@@ -7,10 +7,15 @@ The provisioner is an application to generate provisioning information for hardw
 
 # Installation for CentOS 7 with httpd
 
+Prepare you fresh CentOS 7 server.
+```
+yum -y install httpd mod_ssl git epel-release
+```
+
 ## Clone the repo
 ```
 cd /var/www/html
-git clone git@github.com:OpenTelecom/provisioner.git
+git clone https://github.com/OpenTelecom/provisioner.git
 ```
 
 ## Configure httpd
@@ -38,7 +43,7 @@ Change the ```ServerName``` ```ServerAdmin``` ```DocumentRoot``` as appropriate.
 ## Configure the provisioner
 ### Create and update the config.json file
 ```
-cp /var/www/html/provisioner/config.json.sample /var/www/html/provisioner/config.json
+cp /var/www/html/provisioner/config_sample.json /var/www/html/provisioner/config.json
 ```
 
 Update ```config.json``` with the appropriate settings:
