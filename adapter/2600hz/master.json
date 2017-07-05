@@ -1,0 +1,58 @@
+{
+    "lines": [
+        {
+            "enable" : "{{ provision.settings.line.1.enable }}",
+            "display_name": "{{ caller_id.internal.number }}",
+            "username": "{{ sip.username }}",
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
+
+            "sip_server": {
+                "primary": {
+                    "host": "{{ realm }}",
+                    "port": "5060"
+                },
+                "backup": {
+                    "host": null,
+                    "port": null
+                }
+            },
+
+            "expire": "{{ sip.expire_seconds }}",
+
+            "outbound_proxy": {
+                "enable": "{{ outbound_proxy.enable }}",
+                "primary": {
+                    "host": "{{ outbound_proxy.primary.host }}",
+                    "port": "{{ outbound_proxy.primary.port }}"
+                },
+                "backup": {
+                    "host": "{{ outbound_proxy.backup.host }}",
+                    "port": "{{ outbound_proxy.backup.port }}"
+                }
+            },
+            "siptrustctrl73": "{{ siptrustctrl73 }}",
+            "siptrustctrl80": "{{ siptrustctrl80 }}"
+        }
+    ],
+
+    "linekey": [
+	{
+		"line" : "{{ provision.settings.combo_keys.1.key.line }}",
+		"value" : "{{ provision.settings.combo_keys.1.key.value }}",
+		"pickup_value": "{{ provision.settings.combo_keys.1.key.pickup_value }}",
+		"type": "{{ provision.settings.combo_keys.1.key.type }}",
+		"xml_phonebook": "{{ provision.settings.combo_keys.1.key.xml_phonebook }}",
+		"label": "{{ provision.settings.combo_keys.1.key.label }}"
+	}
+    ],
+
+    "line_keys": { "line": "1" },
+    "vlan": {
+        "enable": "{{ provision.vlan.enable }}",
+        "vid": "{{ provision.vlan.number }}"
+    },
+    "password": "{{ adminpwd }}",
+    "hotline": "{{ provision.hotline }}",
+    "timezone":"{{ timezone }}"
+}
