@@ -21,7 +21,7 @@ git clone https://github.com/OpenTelecom/provisioner.git
 ## Configure httpd
 ### Create the httpd conf file
 ```
-vim /etc/httpd/conf.d/kazooprovision.conf
+vim /etc/httpd/conf/kazooprovision.conf
 <VirtualHost *:80>
         ServerName provisioner.yourdomain.foundation
         ServerAdmin webmaster@yourdomain.foundation
