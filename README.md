@@ -66,7 +66,11 @@ Replace ```MyDomain``` with the domain name of the provisioning server.
 
 ```php setup_db.php```
 
-This will create a number of databases with the prefix as set in the ```config.json``` file.
+This will create a number of databases with the prefix as set in the ```config.json``` file:
+* ```db_prefix```factory_defaults: Contains default settings at make, family and model level.
+* ```db_prefix```mac_lookup: Contains document for each MAC address which maps to the account id.
+* ```db_prefix```providers: Contains a document for each provider. This allows a set of authorised IPs and configuration settings to be set per domain name.
+* ```db_prefix```system_account: Contains default settings at system level.
 
 ###Create a document in the provisioner providers Couch database
 ```
