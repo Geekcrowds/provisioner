@@ -115,3 +115,161 @@ Configure the appropriate settings in the ```crossbar.devices``` document availa
    }
 }
 ```
+## Create Kazoo device
+
+### Background
+The following keys should be populated in the device document in order for the provisioning data to be generated:
+
+```sip``` contains the username and password for the first account on the phone
+
+```mac_address``` the MAC address for the phone
+
+```provision.endpoint_brand``` the phone brand e.g. yealink, cisco, polycom
+
+```provision.endpoint_family``` the phone family e.g. t2x, spa5xx
+
+```provision.endpoint_model``` the phone model e.g. t26, spa303
+
+```provision.settings.accounts``` contains the username, password, domain and proxy details for the second and subsequent accounts on the phone
+
+```provision.settings.lines``` contains the mapping from the line keys on the phone to various functions. The function is determined by the type setting.
+
+```provision.settings.combo_keys``` contains the mapping from the combo keys on the phone to various functions. The function is determined by the type setting.
+
+```provision.settings.sidecar``` contains configuration for settings that are common across all sidecars. The function is determined by the type setting.
+
+```provision.settings.sidecar_01``` contains the mapping from the keys on the first sidecar to various functions. The function is determined by the type setting.
+
+```type``` One of the following values:
+
+* 13: speed dial
+* 15: account
+* 16: BLF
+
+### Example Yealink device document
+```
+{
+  "data": {
+    "sip": {
+      "password": "passw0rd",
+      "username": "user_abcd",
+      "expire_seconds": 300,
+      "invite_format": "username",
+      "method": "password"
+    },
+    "device_type": "sip_device",
+    "enabled": true,
+    "mac_address": "00:15:15:15:15:15",
+    "name": "test t26",
+    "owner_id": "cd7ca46d83a38b7f02a8e1b73f8a463f",
+    "provision": {
+      "endpoint_brand": "yealink",
+      "endpoint_family": "t2x",
+      "endpoint_model": "t26",
+      "settings": {
+        "accounts": {
+          "2": {
+            "basic": {
+              "enable": true,
+              "display_name": "test 2 t26"
+            },
+            "sip": {
+              "username": "user_4abcj",
+              "password": "1234",
+              "realm_01": "1000009.yourdomain.foundation",
+              "outbound_proxy_01": "sip.yourdomain.foundation",
+              "transport": "1"
+            }
+          }
+        },
+        "lines": {
+          "1": {
+            "type": "15",
+            "key": {
+              "line": "1",
+              "value": "1593",
+              "label": "1593"
+            }
+          },
+          "2": {
+            "type": "15",
+            "key": {
+              "line": "2",
+              "value": "1594",
+              "label": "1594"
+            }
+          },
+          "3": {
+            "type": "16",
+            "key": {
+              "line": "2",
+              "value": "2009",
+              "label": "2009"
+            }
+          }
+        },
+        "combo_keys": {
+          "1": {
+            "type": "16",
+            "key": {
+              "line": "1",
+              "value": "1596",
+              "label": "1596"
+            }
+          },
+          "2": {
+            "type": "16",
+            "key": {
+              "line": "1",
+              "value": "1599",
+              "label": "1599"
+            }
+          },
+          "3": {
+            "type": "13",
+            "key": {
+              "line": "1",
+              "value": "5551231234",
+              "label": "5551231234"
+            }
+          }
+        },
+        "sidecar_01": {
+          "1": {
+            "type": "16",
+            "key": {
+              "line": "1",
+              "value": "1593",
+              "label": "1593"
+            }
+          },
+          "2": {
+            "type": "16",
+            "key": {
+              "line": "2",
+              "value": "1594",
+              "label": "1594"
+            }
+          },
+          "3": {
+            "type": "16",
+            "key": {
+              "line": "2",
+              "value": "1595",
+              "label": "1595"
+            }
+          }
+        }
+      }
+    }
+   }
+}
+```
+### Example Yealink device explained
+
+* Two accounts are configured one with username user_abcd and the other with username user_4abcj
+* Three lines are configured. Line 1 is linked to account 1, line 2 is linked to account 2, line 3 is set to monitor BLF on extension 2009 on account 2
+* Three combo_keys are configured. Key 1 is set to monitor BLF on extension 1596 on account 1, key 2 is set to monitor BLF on extension 1599 on account 1, key 3 is set to speed dial 5551231234 using account 1.
+* Three buttons on sidecar are configured. Key 1 is set to monitor BLF on extension 1593 on account 2, key 2 is set to monitor BLF on extension 1594 on account 2, key 3 is set to monitor BLF on extension 1595 on account 2.
+
+## Known issues
