@@ -23,7 +23,8 @@ git clone https://github.com/OpenTelecom/provisioner.git
 ```
 vim /etc/httpd/conf/kazooprovision.conf
 <VirtualHost *:80>
-        ServerName provisioner.yourdomain.foundation
+        ServerName provisioning-server-domain
+        ServerAlias provisioning-provider01-domain provisioning-provider02-domain
         ServerAdmin webmaster@yourdomain.foundation
         DocumentRoot /var/www/html/provisioner/
         Timeout 600
@@ -34,7 +35,7 @@ vim /etc/httpd/conf/kazooprovision.conf
         </Directory>
 </VirtualHost>
 ```
-Change the ```ServerName``` ```ServerAdmin``` ```DocumentRoot``` as appropriate.
+Change ```provisioning-server-domaim```, ```provisioning-provider01-domain```, ```provisioning-provider02-domain``` ```webmaster@yourdomain.foundation``` ```/var/www/html/provisioner/``` as appropriate.
 
 ### Load the configuration
 
@@ -72,7 +73,8 @@ This will create a number of databases with the prefix as set in the ```config.j
 * ```db_prefix```providers: Contains a document for each provider. This allows a set of authorised IPs and configuration settings to be set per domain name.
 * ```db_prefix```system_account: Contains default settings at system level.
 
-### Create a document in the provisioner providers Couch database
+### Create provisioner providers 
+Create a document in the provisioner providers Couch database for each provider. You may create one or more providers.
 ```
 {
    "_id": "PROVIDED-BY-COUCHDB",
@@ -87,7 +89,7 @@ This will create a number of databases with the prefix as set in the ```config.j
        "crossbar-public-ip",
        "crossbar-public-ip"
    ],
-   "domain": "provisioning-server-domain",
+   "domain": "provisioning-provider01-domain",
    "default_account_id": null,
    "pvt_access_type": "admin",
    "pvt_type": "provider",
@@ -101,11 +103,59 @@ This will create a number of databases with the prefix as set in the ```config.j
    }
 }
 ```
+Replace ```provisioning-provider01-domain``` and ```provisioning-provider02-domain``` with the domain names of your providers. 
+
 Replace ```Provider Name``` with the name of this provider. This is an arbitrary value and can be set to anything.
 
 Replace ```crossbar-public-ip``` with the IP of the crossbar server that will be communicating with the provisioner.
 
 Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server that devices will authenticate with.
+
+### Test the provisioner
+Visit http://provisioning-server-domain/api/phones and a list of phones should be returned
+e.g.
+```
+{
+  "data": {
+    "cisco": {
+      "id": "cisco",
+      "name": "cisco",
+      "settings": [
+        
+      ],
+      "families": {
+        "spa": {
+          "id": "cisco_spa",
+          "name": "spa",
+          "settings": [
+            
+          ],
+          "models": {
+            "901": {
+              "id": "cisco_spa_901",
+              "name": "901",
+              "settings": [
+                
+              ]
+            },
+            ...
+```
+## Configure Monster UI
+
+### Update config.js
+```define(function(require) {
+
+        return {
+                api: {
+                        provisioner: 'http://provisioning-server-domain/api/',
+...
+```
+
+Replace ```provisioning-server-domain``` with the domain name of your provisioner.
+
+### Test Monster UI
+
+Navigate to Smart PBX > Devices > Add Device > SIP Phone. You should be prompted to select the device brand.
 
 ## Configure Kazoo
 
@@ -114,11 +164,14 @@ Configure the appropriate settings in the ```crossbar.devices``` document availa
    "_id": "crossbar.devices",
    "default": {
        "provisioning_type": "super_awesome_provisioner",
-       "provisioning_url": "http://provisioner.yourdomain.foundation/api/accounts",
+       "provisioning_url": "http://provisioning-server-domain/api/accounts",
        "allow_aggregates": "true"
    }
 }
 ```
+
+Replace ```provisioning-server-domain``` with the domain name of the provisioner.
+
 ## Create Kazoo device
 
 ### Background
