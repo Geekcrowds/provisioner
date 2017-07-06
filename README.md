@@ -105,7 +105,7 @@ Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server 
 
 ## Configure Kazoo
 
-Configure the appropriate settings in the ```crossbar.devices``` document
+Configure the appropriate settings in the ```crossbar.devices``` document available in your Kazoo HAProxy server at http://127.0.0.1:15984/_utils/document.html?system_config/crossbar.devices
 ```{
    "_id": "crossbar.devices",
    "default": {
