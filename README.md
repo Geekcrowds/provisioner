@@ -70,12 +70,20 @@ This will create a number of databases with the prefix as set in the ```config.j
 
 ###Create a document in the provisioner providers Couch database
 ```
-"name": "Provider Name",
+{
+   "_id": "PROVIDED-BY-COUCHDB",
+   "name": "CloudPBX",
    "authorized_ip": [
        "::0",
        "127.0.0.1",
-       "couch.ip"
-   "domain": "provisioner.yourdomain.foundation",
+       "crossbar-public-ip",
+       "crossbar-public-ip",
+       "crossbar-public-ip",
+       "crossbar-public-ip",
+       "crossbar-public-ip",
+       "crossbar-public-ip"
+   ],
+   "domain": "provisioning-server-domain",
    "default_account_id": null,
    "pvt_access_type": "admin",
    "pvt_type": "provider",
@@ -87,10 +95,11 @@ This will create a number of databases with the prefix as set in the ```config.j
            }
        }
    }
+}
 ```
 Replace ```Provider Name``` with the name of this provider. This is an arbitrary value and can be set to anything.
 
-Replace ```couch.ip``` with the IP of the crossbar server that will be communicating with the provisioner.
+Replace ```crossbar-public-ip``` with the IP of the crossbar server that will be communicating with the provisioner.
 
 Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server that devices will authenticate with.
 
