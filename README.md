@@ -62,7 +62,7 @@ Replace ```MyIP``` with the IP address of the provisioning server.
 
 Replace ```MyDomain``` with the domain name of the provisioning server.
 
-###Create the necessary provisioner Couch databases 
+### Create the necessary provisioner Couch databases 
 
 ```php setup_db.php```
 
@@ -72,7 +72,7 @@ This will create a number of databases with the prefix as set in the ```config.j
 * ```db_prefix```providers: Contains a document for each provider. This allows a set of authorised IPs and configuration settings to be set per domain name.
 * ```db_prefix```system_account: Contains default settings at system level.
 
-###Create a document in the provisioner providers Couch database
+### Create a document in the provisioner providers Couch database
 ```
 {
    "_id": "PROVIDED-BY-COUCHDB",
