@@ -67,11 +67,30 @@ Replace ```MyDomain``` with the domain name of the provisioning server.
 
 ```php setup_db.php```
 
-This will create a number of databases with the prefix as set in the ```config.json``` file:
+This will create the following database with the prefix as set in the ```config.json``` file:
 * ```db_prefix```factory_defaults: Contains default settings at make, family and model level.
+
+In addition you should create the following DBs manually:
 * ```db_prefix```mac_lookup: Contains document for each MAC address which maps to the account id.
 * ```db_prefix```providers: Contains a document for each provider. This allows a set of authorised IPs and configuration settings to be set per domain name.
 * ```db_prefix```system_account: Contains default settings at system level.
+
+### Create DB view
+Create Providers view
+```
+{
+   "_id": "_design/db_prefixproviders",
+    "language": "javascript",
+   "views": {
+       "list_by_domain": {
+           "map": "function(doc) { if (doc.pvt_type != 'provider') return; emit(doc.domain, {'id': doc._id, 'name': doc.name, 'domain' : doc.domain , 'default_account_id' : doc.default_account_id, 'settings': doc.settings}); }"
+       },
+       "list_by_ip": {
+           "map": "function(doc) { if (doc.pvt_type != 'provider') return; for (i in doc.authorized_ip) {emit(doc.authorized_ip[i], {'access_type': doc.pvt_access_type})}; }"
+       }
+   }
+}
+```
 
 ### Create provisioner providers 
 Create a document in the provisioner providers Couch database for each provider. You may create one or more providers.
