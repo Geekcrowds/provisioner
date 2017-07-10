@@ -1,0 +1,76 @@
+
+fail2ban setup
+
+---------------------------------------------
+vim jail.conf
+
+[kazoo-provision]
+enabled  = true
+port     = 80,443
+filter   = kazoo-provision
+logpath  = /PathToProvisioner/logs/log_.txt
+action   = sendmail-whois-lines[name=provision, dest="user@email.com", sender=provision@servername, logpath=/PathToProvisioner/logs/log_.txt, sendername="Fail2Ban provision"]
+           iptables-allports[name=provision, port=80, protocol=all]
+maxretry = 3
+bantime  = 800
+----------------------------------------------
+vim filter.d/kazoo-provision.conf
+
+[Definition]
+failregex = WARN --> Needs manual provisioning... Apparently.* .*IP:<HOST>
+ignoreregex =
+----------------------------------------------
+vim action.d/iptables-allports.conf
+
+[INCLUDES]
+before = iptables-common.conf
+[Definition]
+actionstart = <iptables> -N f2b-<name>
+              <iptables> -A f2b-<name> -j <returntype>
+              <iptables> -I <chain> -p <protocol> -j f2b-<name>
+actionstop = <iptables> -D <chain> -p <protocol> -j f2b-<name>
+             <iptables> -F f2b-<name>
+             <iptables> -X f2b-<name>
+actioncheck = <iptables> -n -L <chain> | grep -q 'f2b-<name>[ \t]'
+actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
+[Init]
+
+-----------------------------------------------
+vim action.d/sendmail-whois-lines.conf
+
+[INCLUDES]
+before = sendmail-common.conf
+[Definition]
+actionstart = printf %%b "Subject: [Fail2Ban servername] <name>: started on `uname -n`
+              Date: `LC_TIME=C date -u +"%%a, %%d %%h %%Y %%T +0000"`
+              From: <sendername> <<sender>>
+              To: <dest>\n
+              Hi,\n
+              The jail <name> has been started successfully.\n
+              Regards,\n
+              Fail2Ban servername" | /usr/sbin/sendmail -f <sender> <dest>
+actionstop = printf %%b "Subject: [Fail2Ban servername] <name>: stopped on `uname -n`
+             Date: `LC_TIME=C date -u +"%%a, %%d %%h %%Y %%T +0000"`
+             From: <sendername> <<sender>>
+             To: <dest>\n
+             Hi,\n
+             The jail <name> has been stopped.\n
+             Regards,\n
+             Fail2Ban servername" | /usr/sbin/sendmail -f <sender> <dest>
+actionban = printf %%b "Subject: [Fail2Ban servername] <name>: banned <ip> from `uname -n`
+            Date: `LC_TIME=C date -u +"%%a, %%d %%h %%Y %%T +0000"`
+            From: <sendername> <<sender>>
+            To: <dest>\n
+            Hi,\n
+            The IP <ip> has just been banned by Fail2Ban servername after
+            <failures> attempts against <name>.\n\n
+            Here are more information about <ip>:\n
+            `/usr/bin/whois <ip>`\n\n
+            Lines containing IP:<ip> in <logpath>\n
+            `grep '\<<ip>\>' <logpath>`\n\n
+            Regards,\n
+            Fail2Ban servername" | /usr/sbin/sendmail -f <sender> <dest>
+[Init]
+name = default
+logpath = /dev/null
+----------------------------------------------------------
