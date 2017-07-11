@@ -16,6 +16,16 @@
 
 require_once LIB_BASE . 'KLogger.php';
 
+function cidr_match($ip, $cidr)
+{
+    list($subnet, $mask) = explode('/', $cidr);
+    if ((ip2long($ip) & ~((1 << (32 - $mask)) - 1) ) == ip2long($subnet))
+    { 
+        return true;
+    }
+    return false;
+}
+
 class adapter_2600hz_adapter {
     private $account_id = null;
     private $needs_manual_provisioning = false;
@@ -122,6 +132,24 @@ $this->account_id = $accid;
             $phone_doc = $db->load_settings($account_db, $this->mac_address, false);
 
 	    //$log->logInfo('phone_doc: ', $phone_doc);
+$account_doc = $db->load_settings($account_db, $this->account_id, true);
+if ($account_doc['access_lists'])  {
+ for($i = 0; $i < count($account_doc['access_lists']['cidrs']); ++$i) {
+  if($account_doc['access_lists']['order'] == "allow,deny"){
+   if(!cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
+                $log->logInfo('access request deny by access ip ', $Clientip);
+                return false;
+   }
+  }
+  if($account_doc['access_lists']['order'] == "deny,allow"){
+   if(cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
+                $log->logInfo('access request deny by access ip ', $Clientip);
+                return false;
+   }
+  }
+ }
+//                $log->logInfo('access request ip: ', $Clientip);
+}
 
             // If we have the doc for this phone but there are no brand or no family
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
