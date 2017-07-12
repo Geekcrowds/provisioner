@@ -67,7 +67,7 @@ Replace ```MyDomain``` with the domain name of the provisioning server.
 
 ```php setup_db.php```
 
-This will create the following database with the prefix as set in the ```config.json``` file:
+This will create the following databases (with the prefix as set in the ```config.json``` file):
 * ```db_prefix```factory_defaults: Contains default settings at make, family and model level.
 * ```db_prefix```mac_lookup: Contains document for each MAC address which maps to the account id.
 * ```db_prefix```providers: Contains a document for each provider. This allows a set of authorised IPs and configuration settings to be set per domain name.
@@ -111,7 +111,7 @@ Replace ```crossbar-public-ip``` with the IP of the crossbar server that will be
 
 Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server that devices will authenticate with.
 
-### Create module in DB by use provision API script
+### Create phone make, family and model details
 
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/cisco
@@ -201,6 +201,22 @@ Configure the appropriate settings in the ```crossbar.devices``` document availa
 ```
 
 Replace ```provisioning-server-domain``` with the domain name of the provisioner.
+
+## Specify IP ACLs
+Provisioner checks whether the ```access_lists``` key exists on the account document. If one or more CIDRs exist then the provisioner validates the IP and will allow or deny the provisioning request as appropriate.
+
+For example given the following access list for an account:
+```
+   "access_lists": {
+       "order": "allow,deny",
+       "cidrs": [
+           "8.8.8.8/32",
+           "8.8.4.4/32"
+       ]
+       }
+```
+
+Any requests for provisioning files from 8.8.8.8 or 8.8.4.4 for a MAC ID that is assigned to that account will be allowed. Requests from any other IP will be denied.
 
 ## Create Kazoo device
 
