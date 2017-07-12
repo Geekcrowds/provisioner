@@ -7,7 +7,7 @@ The provisioner is an application to generate provisioning information for hardw
 
 # Data flow
 
-When a device is created or updated through crossbar, the device data are slightly reformatted and copied to the provisioner database. In addition the account document is also copied to the provisioner.
+When a device is created or updated through crossbar, the device data are slightly reformatted and copied to the provisioner database. In addition the account document is also copied to the provisioner. Refer to [the diagram](https://www.gliffy.com/go/publish/12121940).
 
 # Installation for CentOS 7 with httpd
 
