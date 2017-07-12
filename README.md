@@ -5,6 +5,10 @@ The provisioner is an application to generate provisioning information for hardw
 * Yealink T2x and T4x
 * Polycom SoundPoint and VVX
 
+# Data flow
+
+When a device is created or updated through crossbar, the device data are slightly reformatted and copied to the provisioner database. In addition the account document is also copied to the provisioner.
+
 # Installation for CentOS 7 with httpd
 
 Prepare you fresh CentOS 7 server.
@@ -375,4 +379,4 @@ The following keys should be populated in the device document in order for the p
 * Three combo_keys are configured. Key 1 is set to monitor BLF on extension 1596 on account 1, key 2 is set to monitor BLF on extension 1599 on account 1, key 3 is set to speed dial 5551231234 using account 1.
 * Three buttons on sidecar are configured. Key 1 is set to monitor BLF on extension 1593 on account 2, key 2 is set to monitor BLF on extension 1594 on account 2, key 3 is set to monitor BLF on extension 1595 on account 2.
 
-## Known issues
+# Known issues
