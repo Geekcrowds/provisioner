@@ -84,7 +84,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     }
 
     $providers_view = new stdCLass();
-    $providers_view->_id = "_design/" . $configs->db_prefix . "providers_defaults";
+    $providers_view->_id = "_design/" . $configs->db_prefix . "providers";
     $providers_view->language = "javascript";
 
     // reset
