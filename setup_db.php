@@ -40,12 +40,12 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // Creating the database
 //    $couch_client->useDatabase($configs->db_prefix . "factory_defaults");
     // Creating the database
-    $couch_client = new couchClient($server_url, $configs->db_prefix . "factory_defaults");
-    if (!$couch_client->databaseExists())$couch_client->createDatabase();
+    $couch_client_factory = new couchClient($server_url, $configs->db_prefix . "factory_defaults");
+    if (!$couch_client_factory->databaseExists())$couch_client_factory->createDatabase();
     $couch_client = new couchClient($server_url, $configs->db_prefix . "mac_lookup");
     if (!$couch_client->databaseExists())$couch_client->createDatabase();
-    $couch_client = new couchClient($server_url, $configs->db_prefix . "providers");
-    if (!$couch_client->databaseExists())$couch_client->createDatabase();
+    $couch_client_providers = new couchClient($server_url, $configs->db_prefix . "providers");
+    if (!$couch_client_providers->databaseExists())$couch_client_providers->createDatabase();
     $couch_client = new couchClient($server_url, $configs->db_prefix . "system_account");
     if (!$couch_client->databaseExists())$couch_client->createDatabase();
 
@@ -78,7 +78,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     $factory_view->views = $view;
 
     try {
-        $couch_client->storeDoc($factory_view);
+        $couch_client_factory->storeDoc($factory_view);
     } catch (Exception $e) {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
@@ -102,7 +102,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     $providers_view->views = $view;
 
     try {
-        $couch_client->storeDoc($providers_view);
+        $couch_client_providers->storeDoc($providers_view);
     } catch (Exception $e) {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
