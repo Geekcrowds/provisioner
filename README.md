@@ -142,6 +142,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x/t46
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x/t42
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd/gxp2170
 ```
 
 
