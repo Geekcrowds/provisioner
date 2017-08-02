@@ -251,10 +251,12 @@ The following keys should be populated in the device document in order for the p
 ```provision.settings.sidecar_01``` contains the mapping from the keys on the first sidecar to various functions. The function is determined by the type setting.
 
 ```type``` One of the following values:
+
 Yealink
 * 13: speed dial
 * 15: account
 * 16: BLF
+
 Grandstream
 * 0: account
 * 11: BLF
