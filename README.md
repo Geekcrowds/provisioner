@@ -391,6 +391,9 @@ Grandstream
 ```
 {
   "data": {
+   "brand": "grandstream",
+   "family": "gxphd",
+   "model": "gxp2170",
     "sip": {
       "password": "passw0rd",
       "username": "user_abcd",
@@ -405,14 +408,14 @@ Grandstream
     "owner_id": "cd7ca46d83a38b7f02a8e1b73f8a463f",
     "provision": {
       "endpoint_brand": "grandstream",
-      "endpoint_family": "gxp21xx",
-      "endpoint_model": "gxp2160",
+      "endpoint_family": "gxphd",
+      "endpoint_model": "gxp2170",
       "settings": {
         "accounts": {
           "1": {
             "basic": {
               "enable": true,
-              "display_name": "test 2 gxp2160"
+              "display_name": "test 2 gxp2170"
             },
             "sip": {
               "username": "user_4abcj",

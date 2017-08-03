@@ -2,6 +2,15 @@
 <gs_provision version="1">
 <config version="1">
 {% for line in lines %}
+{% if line.hideblfremotestatus %}
+<P8374>{{ line.hideblfremotestatus }}</P8374>
+{% endif %}
+{% if line.wallpapersource %}
+<P2916>{{ line.wallpapersource }}</P2916>
+{% endif %}
+{% if line.wallpaperserverpath %}
+<P2917>{{ line.wallpaperserverpath  }}</P2917>
+{% endif %}
 <P271>1</P271>
 <P270>{{ line.username }}</P270>
 <P47>{{ line.sip_server.primary.host }}</P47>
