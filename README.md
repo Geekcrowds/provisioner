@@ -142,6 +142,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x/t46
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/yealink/t4x/t42
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd/gxp2170
 ```
 
 
@@ -249,9 +252,14 @@ The following keys should be populated in the device document in order for the p
 
 ```type``` One of the following values:
 
+Yealink
 * 13: speed dial
 * 15: account
 * 16: BLF
+
+Grandstream
+* 0: account
+* 11: BLF
 
 ### Example Yealink device document
 ```
@@ -378,5 +386,107 @@ The following keys should be populated in the device document in order for the p
 * Three lines are configured. Line 1 is linked to account 1, line 2 is linked to account 2, line 3 is set to monitor BLF on extension 2009 on account 2
 * Three combo_keys are configured. Key 1 is set to monitor BLF on extension 1596 on account 1, key 2 is set to monitor BLF on extension 1599 on account 1, key 3 is set to speed dial 5551231234 using account 1.
 * Three buttons on sidecar are configured. Key 1 is set to monitor BLF on extension 1593 on account 2, key 2 is set to monitor BLF on extension 1594 on account 2, key 3 is set to monitor BLF on extension 1595 on account 2.
+
+### Example Grandstream device document
+```
+{
+  "data": {
+   "brand": "grandstream",
+   "family": "gxphd",
+   "model": "gxp2170",
+    "sip": {
+      "password": "passw0rd",
+      "username": "user_abcd",
+      "expire_seconds": 300,
+      "invite_format": "username",
+      "method": "password"
+    },
+    "device_type": "sip_device",
+    "enabled": true,
+    "mac_address": "00:15:15:15:15:15",
+    "name": "test gxp2160",
+    "owner_id": "cd7ca46d83a38b7f02a8e1b73f8a463f",
+    "provision": {
+      "endpoint_brand": "grandstream",
+      "endpoint_family": "gxphd",
+      "endpoint_model": "gxp2170",
+      "settings": {
+        "accounts": {
+          "1": {
+            "basic": {
+              "enable": true,
+              "display_name": "test 2 gxp2170"
+            },
+            "sip": {
+              "username": "user_4abcj",
+              "password": "1234",
+              "realm_01": "1000009.yourdomain.foundation",
+              "outbound_proxy_01": "sip.yourdomain.foundation"
+            }
+          }
+        },
+        "lines": {
+          "1": {
+            "type": "0",
+            "key": {
+              "line": "0",
+              "value": "1593",
+              "label": "1593"
+            }
+          },
+          "2": {
+            "type": "0",
+            "key": {
+              "line": "1",
+              "value": "1594",
+              "label": "1594"
+            }
+          },
+          "3": {
+            "type": "11",
+            "key": {
+              "line": "1",
+              "value": "2009",
+              "label": "2009"
+            }
+          }
+        },
+        "sidecar_01": {
+          "1": {
+            "type": "11",
+            "key": {
+              "line": "0",
+              "value": "1593",
+              "label": "1593"
+            }
+          },
+          "2": {
+            "type": "11",
+            "key": {
+              "line": "1",
+              "value": "1594",
+              "label": "1594"
+            }
+          },
+          "3": {
+            "type": "11",
+            "key": {
+              "line": "1",
+              "value": "1595",
+              "label": "1595"
+            }
+          }
+        }
+      }
+    }
+   }
+}
+```
+
+### Example Grandstream device explained
+
+* Two accounts are configured one with username user_abcd and the other with username user_4abcj
+* Three lines are configured. Line 1 is linked to account 0, line 2 is linked to account 1, line 3 is set to monitor BLF on extension 2009 on account 
+* Three buttons on sidecar are configured. Key 1 is set to monitor BLF on extension 1593 on account 0, key 2 is set to monitor BLF on extension 1594 on account 1, key 3 is set to monitor BLF on extension 1595 on account 1.
 
 # Known issues

@@ -31,6 +31,9 @@
                     "port": "{{ outbound_proxy.backup.port }}"
                 }
             },
+            "wallpapersource": "{{ wallpapersource }}",
+            "wallpaperserverpath": "{{ wallpaperserverpath }}",
+            "hideblfremotestatus": "{{ hideblfremotestatus }}",
             "siptrustctrl73": "{{ siptrustctrl73 }}",
             "siptrustctrl80": "{{ siptrustctrl80 }}"
         }
