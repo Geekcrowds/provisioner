@@ -103,7 +103,10 @@ Create a document in the provisioner providers Couch database for each provider.
            "primary": {
                "host": "kamailio.domain"
            }
-       }
+       },
+       "wallpapersource": "1",
+       "wallpaperserverpath": "www.yourdomain.com/reseller.jpg",
+       "hideblfremotestatus": "1"
    }
 }
 ```
@@ -114,6 +117,13 @@ Replace ```Provider Name``` with the name of this provider. This is an arbitrary
 Replace ```crossbar-public-ip``` with the IP of the crossbar server that will be communicating with the provisioner.
 
 Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server that devices will authenticate with.
+
+Replace ```wallpapersource value``` with Wallpaper Source. O - Default, 1 - Download, 2 - USB, 3 - Uploaded (for grandstream)
+
+Replace ```wallpaperserverpath value``` with Wallpaper Server Path (for grandstream)
+
+Replace ```hideblfremotestatus value``` with Hide BLF Remote Status. 0 - No, 1 - Yes. Default is 0-11 (for grandstream)
+
 
 ### Create phone make, family and model details
 
