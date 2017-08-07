@@ -443,7 +443,9 @@ Grandstream
       "endpoint_family": "gxphd",
       "endpoint_model": "gxp2170",
       "settings": {
-        "accounts": {
+       "wallpapersource": "1",
+       "wallpaperserverpath": "www.yourdomain.com/reseller.jpg",
+       "accounts": {
           "1": {
             "basic": {
               "enable": true,
