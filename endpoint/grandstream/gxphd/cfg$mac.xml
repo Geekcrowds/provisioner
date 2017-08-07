@@ -2,6 +2,9 @@
 <gs_provision version="1">
 <config version="1">
 {% for line in lines %}
+{% if line.userandomport %}
+<P78>{{ line.userandomport }}</P78>
+{% endif %}
 {% if line.hideblfremotestatus %}
 <P8374>{{ line.hideblfremotestatus }}</P8374>
 {% endif %}
@@ -12,13 +15,16 @@
 <P2917>{{ line.wallpaperserverpath  }}</P2917>
 {% endif %}
 <P271>1</P271>
-<P270>{{ line.username }}</P270>
+<P270>{{ line.display_name }}</P270>
 <P47>{{ line.sip_server.primary.host }}</P47>
 <P48>{{ line.outbound_proxy.primary.host }}</P48>
 <P35>{{ line.username }}</P35>
 <P36>{{ line.username }}</P36>
 <P34>{{ line.auth_password }}</P34>
 <P3>{{ line.display_name }}</P3>
+{% if line.acceptincomsipfromproxyonly1 %}
+<P2347>{{ line.acceptincomsipfromproxyonly1 }}</P2347>
+{% endif %}
 {% endfor %}
 {% if provision.settings.accounts.1.basic.enable %}
 <P401>1</P401>
@@ -29,6 +35,11 @@
 <P405>{{ provision.settings.accounts.1.sip.username }}</P405>
 <P406>{{ provision.settings.accounts.1.sip.password }}</P406>
 <P407>{{ provision.settings.accounts.1.basic.display_name }}</P407>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly2 %}
+<P2447>{{ line.acceptincomsipfromproxyonly2 }}</P2447>
+{% endif %}
+{% endfor %}
 {% endif %}
 {% if provision.settings.accounts.2.basic.enable %}
 <P501>1</P501>
@@ -39,6 +50,11 @@
 <P505>{{ provision.settings.accounts.2.sip.username }}</P505>
 <P506>{{ provision.settings.accounts.2.sip.password }}</P506>
 <P507>{{ provision.settings.accounts.2.basic.display_name }}</P507>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly3 %}
+<P2547>{{ line.acceptincomsipfromproxyonly3 }}</P2547>
+{% endif %}
+{% endfor %}
 {% endif %}
 {% if provision.settings.accounts.3.basic.enable %}
 <P601>1</P601>
@@ -49,6 +65,11 @@
 <P605>{{ provision.settings.accounts.3.sip.username }}</P605>
 <P606>{{ provision.settings.accounts.3.sip.password }}</P606>
 <P607>{{ provision.settings.accounts.3.basic.display_name }}</P607>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly4 %}
+<P2647>{{ line.acceptincomsipfromproxyonly4 }}</P2647>
+{% endif %}
+{% endfor %}
 {% endif %}
 {% if provision.settings.accounts.4.basic.enable %}
 <P1701>1</P1701>
@@ -59,6 +80,11 @@
 <P1705>{{ provision.settings.accounts.4.sip.username }}</P1705>
 <P1706>{{ provision.settings.accounts.4.sip.password }}</P1706>
 <P1707>{{ provision.settings.accounts.4.basic.display_name }}</P1707>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly5 %}
+<P2747>{{ line.acceptincomsipfromproxyonly5 }}</P2747>
+{% endif %}
+{% endfor %}
 {% endif %}
 {% if provision.settings.accounts.5.basic.enable %}
 <P1801>1</P1801>
@@ -69,6 +95,11 @@
 <P1805>{{ provision.settings.accounts.5.sip.username }}</P1805>
 <P1806>{{ provision.settings.accounts.5.sip.password }}</P1806>
 <P1807>{{ provision.settings.accounts.5.basic.display_name }}</P1807>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly6 %}
+<P2847>{{ line.acceptincomsipfromproxyonly6 }}</P2847>
+{% endif %}
+{% endfor %}
 {% endif %}
 {% if provision.settings.lines.1.key.label %}
 <P1363>{{ provision.settings.lines.1.type }}</P1363>

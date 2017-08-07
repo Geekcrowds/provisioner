@@ -107,6 +107,13 @@ Create a document in the provisioner providers Couch database for each provider.
        "wallpapersource": "1",
        "wallpaperserverpath": "www.yourdomain.com/reseller.jpg",
        "hideblfremotestatus": "1"
+       "acceptincomsipfromproxyonly1": "1",
+       "acceptincomsipfromproxyonly2": "1",
+       "acceptincomsipfromproxyonly3": "1",
+       "acceptincomsipfromproxyonly4": "1",
+       "acceptincomsipfromproxyonly5": "1",
+       "acceptincomsipfromproxyonly6": "1",
+       "userandomport": "1",
    }
 }
 ```
@@ -124,7 +131,21 @@ Replace ```wallpaperserverpath value``` with Wallpaper Server Path (for grandstr
 
 Replace ```hideblfremotestatus value``` with Hide BLF Remote Status. 0 - No, 1 - Yes. Default is 0-11 (for grandstream)
 
-Provisioner providers settings value can be overwrite at provisionaccount/$accountid/$MAC document. eg: put '"wallpaperserverpath": "www.yourdomain.com/reseller2.jpg",' at provisionaccount/$accountid/$MAC document, it will overwrite the value at provisioner providers document.
+Replace ```acceptincomsipfromproxyonly1 value``` with Account 1 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly2 value``` with Account 2 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly3 value``` with Account 3 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly4 value``` with Account 4 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly5 value``` with Account 5 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly6 value``` with Account 6 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```userandomport value``` with Use Random Port value (for grandstream)
+
+Provisioner providers settings value can be overwrite at provisionaccount/$accountid/$MAC document. eg: put '"wallpaperserverpath": "www.yourdomain.com/reseller2.jpg",' at provisionaccount/$accountid/$MAC document setting field, it will overwrite the value at provisioner providers document.
 
 ### Create phone make, family and model details
 
