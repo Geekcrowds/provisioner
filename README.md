@@ -124,6 +124,7 @@ Replace ```wallpaperserverpath value``` with Wallpaper Server Path (for grandstr
 
 Replace ```hideblfremotestatus value``` with Hide BLF Remote Status. 0 - No, 1 - Yes. Default is 0-11 (for grandstream)
 
+Provisioner providers settings value can be overwrite at provisionaccount/$accountid/$MAC document. eg: put '"wallpaperserverpath": "www.yourdomain.com/reseller2.jpg",' at provisionaccount/$accountid/$MAC document, it will overwrite the value at provisioner providers document.
 
 ### Create phone make, family and model details
 
