@@ -134,7 +134,7 @@ $this->account_id = $accid;
 	    //$log->logInfo('phone_doc: ', $phone_doc);
 $account_doc = $db->load_settings($account_db, $this->account_id, true);
 if ($account_doc['access_lists'])  {
- for($i = 0; $i < count($account_doc['access_lists']['cidrs']); ++$i) {
+ for($i = 0; $i <= count($account_doc['access_lists']['cidrs']); ++$i) {
   if($account_doc['access_lists']['order'] == "allow,deny"){
    if(!cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
                 $log->logInfo('access request deny by access ip ', $Clientip);
