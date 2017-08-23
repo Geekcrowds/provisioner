@@ -26,6 +26,20 @@ function cidr_match($ip, $cidr)
     return false;
 }
 
+function cidr_match_array($ip, $cidr)
+{
+for($i = 0; $i < count($cidr); $i++){
+//                $log->logInfo('access request deny by access cidr i fun', $cidr[$i]);
+    list($subnet, $mask) = explode('/', $cidr[$i]);
+    if ((ip2long($ip) & ~((1 << (32 - $mask)) - 1) ) == ip2long($subnet))
+    {
+        return true;
+    }
+}
+    return false;
+}
+
+
 class adapter_2600hz_adapter {
     private $account_id = null;
     private $needs_manual_provisioning = false;
@@ -134,16 +148,22 @@ $this->account_id = $accid;
 	    //$log->logInfo('phone_doc: ', $phone_doc);
 $account_doc = $db->load_settings($account_db, $this->account_id, true);
 if ($account_doc['access_lists'])  {
- for($i = 0; $i <= count($account_doc['access_lists']['cidrs']); ++$i) {
   if($account_doc['access_lists']['order'] == "allow,deny"){
-   if(!cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
-                $log->logInfo('access request deny by access ip ', $Clientip);
-                return false;
-   }
+// for($i = 0; $i < count($account_doc['access_lists']['cidrs']); $i++) {
+//                $log->logInfo('access request deny by access cidr 1', $account_doc['access_lists']['cidrs'][$i]);
+   if(cidr_match_array($Clientip, $account_doc['access_lists']['cidrs'])){
+//                $log->logInfo('access request deny by access cidr ', $account_doc['access_lists']['cidrs'][$i]);
+                $log->logInfo('access request deny by access i ', $Clientip);
+	}else{
+                $log->logInfo('access request deny by access ip 1', $Clientip);
+		return false;
+	}
+//  }
   }
   if($account_doc['access_lists']['order'] == "deny,allow"){
+ for($i = 0; $i <= count($account_doc['access_lists']['cidrs']); $i++) {
    if(cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
-                $log->logInfo('access request deny by access ip ', $Clientip);
+                $log->logInfo('access request deny by access ip 2 ', $Clientip);
                 return false;
    }
   }
