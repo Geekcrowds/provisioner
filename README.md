@@ -103,7 +103,17 @@ Create a document in the provisioner providers Couch database for each provider.
            "primary": {
                "host": "kamailio.domain"
            }
-       }
+       },
+       "wallpapersource": "1",
+       "wallpaperserverpath": "www.yourdomain.com/reseller.jpg",
+       "hideblfremotestatus": "1"
+       "acceptincomsipfromproxyonly1": "1",
+       "acceptincomsipfromproxyonly2": "1",
+       "acceptincomsipfromproxyonly3": "1",
+       "acceptincomsipfromproxyonly4": "1",
+       "acceptincomsipfromproxyonly5": "1",
+       "acceptincomsipfromproxyonly6": "1",
+       "userandomport": "1",
    }
 }
 ```
@@ -114,6 +124,28 @@ Replace ```Provider Name``` with the name of this provider. This is an arbitrary
 Replace ```crossbar-public-ip``` with the IP of the crossbar server that will be communicating with the provisioner.
 
 Replace ```kamailio.domain``` with the domain name or IP of the Kamailio server that devices will authenticate with.
+
+Replace ```wallpapersource value``` with Wallpaper Source. O - Default, 1 - Download, 2 - USB, 3 - Uploaded (for grandstream)
+
+Replace ```wallpaperserverpath value``` with Wallpaper Server Path (for grandstream)
+
+Replace ```hideblfremotestatus value``` with Hide BLF Remote Status. 0 - No, 1 - Yes. Default is 0-11 (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly1 value``` with Account 1 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly2 value``` with Account 2 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly3 value``` with Account 3 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly4 value``` with Account 4 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly5 value``` with Account 5 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```acceptincomsipfromproxyonly6 value``` with Account 6 Accept Incoming SIP from Proxy Only value (for grandstream)
+
+Replace ```userandomport value``` with Use Random Port value (for grandstream)
+
+Provisioner providers settings value can be overwrite at provisionaccount/$accountid/$MAC document. eg: put '"wallpaperserverpath": "www.yourdomain.com/reseller2.jpg",' at provisionaccount/$accountid/$MAC document setting field, it will overwrite the value at provisioner providers document.
 
 ### Create phone make, family and model details
 
@@ -412,7 +444,9 @@ Grandstream
       "endpoint_family": "gxphd",
       "endpoint_model": "gxp2170",
       "settings": {
-        "accounts": {
+       "wallpapersource": "1",
+       "wallpaperserverpath": "www.yourdomain.com/reseller.jpg",
+       "accounts": {
           "1": {
             "basic": {
               "enable": true,

@@ -26,6 +26,23 @@ function cidr_match($ip, $cidr)
     return false;
 }
 
+function is_ip_allowed($ip, $account_doc, $log)
+{
+    // allow,deny means allow only ips in the list
+    // deny,allow means deny only ips in the list
+    $allow_deny = $account_doc['access_lists']['order'] == "allow,deny";
+    $cidrs = $account_doc['access_lists']['cidrs'];
+    for ($i = 0; $i < count($cidrs); $i++) {
+        $log->logInfo('Checking IP ' . $ip . ' against CIDR ' . $cidrs[$i]);
+        if (cidr_match($ip, $cidrs[$i])) {
+            $log->logInfo('Matches CIDR ' . $cidrs[$i]);
+            return $allow_deny;
+        }
+    }
+    $log->logInfo('IP doesn\'t match any CIDR');
+    return !$allow_deny;
+}
+
 class adapter_2600hz_adapter {
     private $account_id = null;
     private $needs_manual_provisioning = false;
@@ -132,24 +149,17 @@ $this->account_id = $accid;
             $phone_doc = $db->load_settings($account_db, $this->mac_address, false);
 
 	    //$log->logInfo('phone_doc: ', $phone_doc);
-$account_doc = $db->load_settings($account_db, $this->account_id, true);
-if ($account_doc['access_lists'])  {
- for($i = 0; $i < count($account_doc['access_lists']['cidrs']); ++$i) {
-  if($account_doc['access_lists']['order'] == "allow,deny"){
-   if(!cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
-                $log->logInfo('access request deny by access ip ', $Clientip);
+            $account_doc = $db->load_settings($account_db, $this->account_id, true);
+
+            // Check ACLs
+            $log->logInfo('Checking IP ' . $Clientip . ' in access list');
+            if (!is_ip_allowed($Clientip, $account_doc, $log)) {
+                // We want to block the request
+                $log->logInfo('IP is disallowed '.$account_doc['access_lists']['order'].' blocking request :'.$Clientip);
                 return false;
-   }
-  }
-  if($account_doc['access_lists']['order'] == "deny,allow"){
-   if(cidr_match($Clientip, $account_doc['access_lists']['cidrs'][$i])){
-                $log->logInfo('access request deny by access ip ', $Clientip);
-                return false;
-   }
-  }
- }
-//                $log->logInfo('access request ip: ', $Clientip);
-}
+            } else {
+                $log->logInfo('IP is allowed '.$account_doc['access_lists']['order'].' allowing request :'.$Clientip);
+            }
 
             // If we have the doc for this phone but there are no brand or no family
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
