@@ -181,7 +181,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd/gxp2170
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gxphd/gxp2130
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gac
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gac/2500
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X PUT -d '{"settings": {}}' http://provisionerurl/api/phones/grandstream/gac/gac2500
 ```
 
 
