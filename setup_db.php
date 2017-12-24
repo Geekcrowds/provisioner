@@ -40,11 +40,14 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // Creating the database
 //    $couch_client->useDatabase($configs->db_prefix . "factory_defaults");
     // Creating the database
-    $couch_client = new couchClient($server_url, $configs->db_prefix . "factory_defaults");
-
-    if (!$couch_client->databaseExists())
-        $couch_client->createDatabase();
-
+    $couch_client_factory = new couchClient($server_url, $configs->db_prefix . "factory_defaults");
+    if (!$couch_client_factory->databaseExists())$couch_client_factory->createDatabase();
+    $couch_client = new couchClient($server_url, $configs->db_prefix . "mac_lookup");
+    if (!$couch_client->databaseExists())$couch_client->createDatabase();
+    $couch_client_providers = new couchClient($server_url, $configs->db_prefix . "providers");
+    if (!$couch_client_providers->databaseExists())$couch_client_providers->createDatabase();
+    $couch_client = new couchClient($server_url, $configs->db_prefix . "system_account");
+    if (!$couch_client->databaseExists())$couch_client->createDatabase();
 
     // Creating the views
     $factory_view = new stdCLass();
@@ -75,11 +78,34 @@ if (strtolower($configs->database->type) == "bigcouch") {
     $factory_view->views = $view;
 
     try {
-        $couch_client->storeDoc($factory_view);
+        $couch_client_factory->storeDoc($factory_view);
     } catch (Exception $e) {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
 
+    $providers_view = new stdCLass();
+    $providers_view->_id = "_design/" . $configs->db_prefix . "providers";
+    $providers_view->language = "javascript";
+
+    // reset
+    $view = new stdCLass();
+    // By domain
+    $view->{"list_by_domain"} = array(
+        "map" => "function(doc) { if (doc.pvt_type != 'provider') return; emit(doc.domain, {'id': doc._id, 'name': doc.name, 'domain' : doc.domain , 'default_account_id' : doc.default_account_id, 'settings': doc.settings}); }"
+    );
+
+    // By ip
+    $view->{"list_by_ip"} = array(
+        "map" => "function(doc) { if (doc.pvt_type != 'provider') return; for (i in doc.authorized_ip) {emit(doc.authorized_ip[i], {'access_type': doc.pvt_access_type})}; }"
+    );
+
+    $providers_view->views = $view;
+
+    try {
+        $couch_client_providers->storeDoc($providers_view);
+    } catch (Exception $e) {
+        die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
+    }
 }
 
  ?>

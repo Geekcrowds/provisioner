@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gs_provision version="1">
+<config version="1">
+{% for line in lines %}
+{% if line.userandomport %}
+<P78>{{ line.userandomport }}</P78>
+{% endif %}
+{% if line.hideblfremotestatus %}
+<P8374>{{ line.hideblfremotestatus }}</P8374>
+{% endif %}
+{% if line.wallpapersource %}
+<P2916>{{ line.wallpapersource }}</P2916>
+{% endif %}
+{% if line.wallpaperserverpath %}
+<P2917>{{ line.wallpaperserverpath  }}</P2917>
+{% endif %}
+{% if provision.settings.wallpapersource %}
+<P2916>{{ provision.settings.wallpapersource }}</P2916>
+{% endif %}
+{% if provision.settings.wallpaperserverpath %}
+<P2917>{{ provision.settings.wallpaperserverpath  }}</P2917>
+{% endif %}
+<P271>1</P271>
+<P270>{{ line.display_name }}</P270>
+<P47>{{ line.sip_server.primary.host }}</P47>
+<P48>{{ line.outbound_proxy.primary.host }}</P48>
+<P35>{{ line.username }}</P35>
+<P36>{{ line.username }}</P36>
+<P34>{{ line.auth_password }}</P34>
+<P3>{{ line.display_name }}</P3>
+{% if line.acceptincomsipfromproxyonly1 %}
+<P2347>{{ line.acceptincomsipfromproxyonly1 }}</P2347>
+{% endif %}
+{% endfor %}
+{% if provision.settings.accounts.1.basic.enable %}
+<P401>1</P401>
+<P417>{{ provision.settings.accounts.1.basic.display_name }}</P417>
+<P402>{{ provision.settings.accounts.1.sip.realm_01 }}</P402>
+<P403>{{ provision.settings.accounts.1.sip.outbound_proxy_01 }}</P403>
+<P404>{{ provision.settings.accounts.1.sip.username }}</P404>
+<P405>{{ provision.settings.accounts.1.sip.username }}</P405>
+<P406>{{ provision.settings.accounts.1.sip.password }}</P406>
+<P407>{{ provision.settings.accounts.1.basic.display_name }}</P407>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly2 %}
+<P2447>{{ line.acceptincomsipfromproxyonly2 }}</P2447>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if provision.settings.accounts.2.basic.enable %}
+<P501>1</P501>
+<P517>{{ provision.settings.accounts.2.basic.display_name }}</P517>
+<P502>{{ provision.settings.accounts.2.sip.realm_01 }}</P502>
+<P503>{{ provision.settings.accounts.2.sip.outbound_proxy_01 }}</P503>
+<P504>{{ provision.settings.accounts.2.sip.username }}</P504>
+<P505>{{ provision.settings.accounts.2.sip.username }}</P505>
+<P506>{{ provision.settings.accounts.2.sip.password }}</P506>
+<P507>{{ provision.settings.accounts.2.basic.display_name }}</P507>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly3 %}
+<P2547>{{ line.acceptincomsipfromproxyonly3 }}</P2547>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if provision.settings.accounts.3.basic.enable %}
+<P601>1</P601>
+<P617>{{ provision.settings.accounts.3.basic.display_name }}</P617>
+<P602>{{ provision.settings.accounts.3.sip.realm_01 }}</P602>
+<P603>{{ provision.settings.accounts.3.sip.outbound_proxy_01 }}</P603>
+<P604>{{ provision.settings.accounts.3.sip.username }}</P604>
+<P605>{{ provision.settings.accounts.3.sip.username }}</P605>
+<P606>{{ provision.settings.accounts.3.sip.password }}</P606>
+<P607>{{ provision.settings.accounts.3.basic.display_name }}</P607>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly4 %}
+<P2647>{{ line.acceptincomsipfromproxyonly4 }}</P2647>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if provision.settings.accounts.4.basic.enable %}
+<P1701>1</P1701>
+<P1717>{{ provision.settings.accounts.4.basic.display_name }}</P1717>
+<P1702>{{ provision.settings.accounts.4.sip.realm_01 }}</P1702>
+<P1703>{{ provision.settings.accounts.4.sip.outbound_proxy_01 }}</P1703>
+<P1704>{{ provision.settings.accounts.4.sip.username }}</P1704>
+<P1705>{{ provision.settings.accounts.4.sip.username }}</P1705>
+<P1706>{{ provision.settings.accounts.4.sip.password }}</P1706>
+<P1707>{{ provision.settings.accounts.4.basic.display_name }}</P1707>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly5 %}
+<P2747>{{ line.acceptincomsipfromproxyonly5 }}</P2747>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if provision.settings.accounts.5.basic.enable %}
+<P1801>1</P1801>
+<P1817>{{ provision.settings.accounts.5.basic.display_name }}</P1817>
+<P1802>{{ provision.settings.accounts.5.sip.realm_01 }}</P1802>
+<P1803>{{ provision.settings.accounts.5.sip.outbound_proxy_01 }}</P1803>
+<P1804>{{ provision.settings.accounts.5.sip.username }}</P1804>
+<P1805>{{ provision.settings.accounts.5.sip.username }}</P1805>
+<P1806>{{ provision.settings.accounts.5.sip.password }}</P1806>
+<P1807>{{ provision.settings.accounts.5.basic.display_name }}</P1807>
+{% for line in lines %}
+{% if line.acceptincomsipfromproxyonly6 %}
+<P2847>{{ line.acceptincomsipfromproxyonly6 }}</P2847>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if provision.settings.lines.1.key.label %}
+<P1363>{{ provision.settings.lines.1.type }}</P1363>
+<P1364>{{ provision.settings.lines.1.key.line }}</P1364>
+<P1465>{{ provision.settings.lines.1.key.label }}</P1465>
+<P1466>{{ provision.settings.lines.1.key.value }}</P1466>
+{% endif %}
+{% if provision.settings.lines.2.key.label %}
+<P1365>{{ provision.settings.lines.2.type }}</P1365>
+<P1366>{{ provision.settings.lines.2.key.line }}</P1366>
+<P1467>{{ provision.settings.lines.2.key.label }}</P1467>
+<P1468>{{ provision.settings.lines.2.key.value }}</P1468>
+{% endif %}
+{% if provision.settings.lines.3.key.label %}
+<P1367>{{ provision.settings.lines.3.type }}</P1367>
+<P1368>{{ provision.settings.lines.3.key.line }}</P1368>
+<P1469>{{ provision.settings.lines.3.key.label }}</P1469>
+<P1470>{{ provision.settings.lines.3.key.value }}</P1470>
+{% endif %}
+{% if provision.settings.lines.4.key.label %}
+<P1369>{{ provision.settings.lines.4.type }}</P1369>
+<P1370>{{ provision.settings.lines.4.key.line }}</P1370>
+<P1471>{{ provision.settings.lines.4.key.label }}</P1471>
+<P1472>{{ provision.settings.lines.4.key.value }}</P1472>
+{% endif %}
+{% if provision.settings.lines.5.key.label %}
+<P1371>{{ provision.settings.lines.5.type }}</P1371>
+<P1372>{{ provision.settings.lines.5.key.line }}</P1372>
+<P1473>{{ provision.settings.lines.5.key.label }}</P1473>
+<P1474>{{ provision.settings.lines.5.key.value }}</P1474>
+{% endif %}
+{% if provision.settings.lines.6.key.label %}
+<P1373>{{ provision.settings.lines.6.type }}</P1373>
+<P1374>{{ provision.settings.lines.6.key.line }}</P1374>
+<P1475>{{ provision.settings.lines.6.key.label }}</P1475>
+<P1476>{{ provision.settings.lines.6.key.value }}</P1476>
+{% endif %}
+{% if provision.settings.lines.7.key.label %}
+<P23800>{{ provision.settings.lines.7.type }}</P23800>
+<P23801>{{ provision.settings.lines.7.key.line }}</P23801>
+<P23802>{{ provision.settings.lines.7.key.label }}</P23802>
+<P23803>{{ provision.settings.lines.7.key.value }}</P23803>
+{% endif %}
+{% if provision.settings.lines.8.key.label %}
+<P23804>{{ provision.settings.lines.8.type }}</P23804>
+<P23805>{{ provision.settings.lines.8.key.line }}</P23805>
+<P23806>{{ provision.settings.lines.8.key.label }}</P23806>
+<P23807>{{ provision.settings.lines.8.key.value }}</P23807>
+{% endif %}
+{% if provision.settings.lines.9.key.label %}
+<P23808>{{ provision.settings.lines.9.type }}</P23808>
+<P23809>{{ provision.settings.lines.9.key.line }}</P23809>
+<P23810>{{ provision.settings.lines.9.key.label }}</P23810>
+<P23811>{{ provision.settings.lines.9.key.value }}</P23811>
+{% endif %}
+{% if provision.settings.lines.10.key.label %}
+<P23812>{{ provision.settings.lines.10.type }}</P23812>
+<P23813>{{ provision.settings.lines.10.key.line }}</P23813>
+<P23814>{{ provision.settings.lines.10.key.label }}</P23814>
+<P23815>{{ provision.settings.lines.10.key.value }}</P23815>
+{% endif %}
+{% if provision.settings.lines.11.key.label %}
+<P23816>{{ provision.settings.lines.11.type }}</P23816>
+<P23817>{{ provision.settings.lines.11.key.line }}</P23817>
+<P23818>{{ provision.settings.lines.11.key.label }}</P23818>
+<P23819>{{ provision.settings.lines.11.key.value }}</P23819>
+{% endif %}
+{% if provision.settings.lines.12.key.label %}
+<P23820>{{ provision.settings.lines.12.type }}</P23820>
+<P23821>{{ provision.settings.lines.12.key.line }}</P23821>
+<P23822>{{ provision.settings.lines.12.key.label }}</P23822>
+<P23823>{{ provision.settings.lines.12.key.value }}</P23823>
+{% endif %}
+{% if provision.settings.lines.13.key.label %}
+<P23824>{{ provision.settings.lines.13.type }}</P23824>
+<P23825>{{ provision.settings.lines.13.key.line }}</P23825>
+<P23826>{{ provision.settings.lines.13.key.label }}</P23826>
+<P23827>{{ provision.settings.lines.13.key.value }}</P23827>
+{% endif %}
+{% if provision.settings.lines.14.key.label %}
+<P23828>{{ provision.settings.lines.14.type }}</P23828>
+<P23829>{{ provision.settings.lines.14.key.line }}</P23829>
+<P23830>{{ provision.settings.lines.14.key.label }}</P23830>
+<P23831>{{ provision.settings.lines.14.key.value }}</P23831>
+{% endif %}
+{% if provision.settings.lines.15.key.label %}
+<P23832>{{ provision.settings.lines.15.type }}</P23832>
+<P23833>{{ provision.settings.lines.15.key.line }}</P23833>
+<P23834>{{ provision.settings.lines.15.key.label }}</P23834>
+<P23835>{{ provision.settings.lines.15.key.value }}</P23835>
+{% endif %}
+{% if provision.settings.lines.16.key.label %}
+<P23836>{{ provision.settings.lines.16.type }}</P23836>
+<P23837>{{ provision.settings.lines.16.key.line }}</P23837>
+<P23838>{{ provision.settings.lines.16.key.label }}</P23838>
+<P23839>{{ provision.settings.lines.16.key.value }}</P23839>
+{% endif %}
+{% if provision.settings.lines.17.key.label %}
+<P23840>{{ provision.settings.lines.17.type }}</P23840>
+<P23841>{{ provision.settings.lines.17.key.line }}</P23841>
+<P23842>{{ provision.settings.lines.17.key.label }}</P23842>
+<P23843>{{ provision.settings.lines.17.key.value }}</P23843>
+{% endif %}
+{% if provision.settings.lines.18.key.label %}
+<P23844>{{ provision.settings.lines.18.type }}</P23844>
+<P23845>{{ provision.settings.lines.18.key.line }}</P23845>
+<P23846>{{ provision.settings.lines.18.key.label }}</P23846>
+<P23847>{{ provision.settings.lines.18.key.value }}</P23847>
+{% endif %}
+{% if provision.settings.lines.19.key.label %}
+<P23848>{{ provision.settings.lines.19.type }}</P23848>
+<P23849>{{ provision.settings.lines.19.key.line }}</P23849>
+<P23850>{{ provision.settings.lines.19.key.label }}</P23850>
+<P23851>{{ provision.settings.lines.19.key.value }}</P23851>
+{% endif %}
+{% if provision.settings.lines.20.key.label %}
+<P23852>{{ provision.settings.lines.20.type }}</P23852>
+<P23853>{{ provision.settings.lines.20.key.line }}</P23853>
+<P23854>{{ provision.settings.lines.20.key.label }}</P23854>
+<P23855>{{ provision.settings.lines.20.key.value }}</P23855>
+{% endif %}
+{% if provision.settings.lines.21.key.label %}
+<P23856>{{ provision.settings.lines.21.type }}</P23856>
+<P23857>{{ provision.settings.lines.21.key.line }}</P23857>
+<P23858>{{ provision.settings.lines.21.key.label }}</P23858>
+<P23859>{{ provision.settings.lines.21.key.value }}</P23859>
+{% endif %}
+{% if provision.settings.lines.22.key.label %}
+<P23860>{{ provision.settings.lines.22.type }}</P23860>
+<P23861>{{ provision.settings.lines.22.key.line }}</P23861>
+<P23862>{{ provision.settings.lines.22.key.label }}</P23862>
+<P23863>{{ provision.settings.lines.22.key.value }}</P23863>
+{% endif %}
+{% if provision.settings.lines.23.key.label %}
+<P23864>{{ provision.settings.lines.23.type }}</P23864>
+<P23865>{{ provision.settings.lines.23.key.line }}</P23865>
+<P23866>{{ provision.settings.lines.23.key.label }}</P23866>
+<P23867>{{ provision.settings.lines.23.key.value }}</P23867>
+{% endif %}
+{% if provision.settings.lines.24.key.label %}
+<P23868>{{ provision.settings.lines.24.type }}</P23868>
+<P23869>{{ provision.settings.lines.24.key.line }}</P23869>
+<P23870>{{ provision.settings.lines.24.key.label }}</P23870>
+<P23871>{{ provision.settings.lines.24.key.value }}</P23871>
+{% endif %}
+{% if provision.settings.lines.25.key.label %}
+<P23872>{{ provision.settings.lines.25.type }}</P23872>
+<P23873>{{ provision.settings.lines.25.key.line }}</P23873>
+<P23874>{{ provision.settings.lines.25.key.label }}</P23874>
+<P23875>{{ provision.settings.lines.25.key.value }}</P23875>
+{% endif %}
+{% if provision.settings.lines.26.key.label %}
+<P23876>{{ provision.settings.lines.26.type }}</P23876>
+<P23877>{{ provision.settings.lines.26.key.line }}</P23877>
+<P23878>{{ provision.settings.lines.26.key.label }}</P23878>
+<P23879>{{ provision.settings.lines.26.key.value }}</P23879>
+{% endif %}
+{% if provision.settings.lines.27.key.label %}
+<P23880>{{ provision.settings.lines.27.type }}</P23880>
+<P23881>{{ provision.settings.lines.27.key.line }}</P23881>
+<P23882>{{ provision.settings.lines.27.key.label }}</P23882>
+<P23883>{{ provision.settings.lines.27.key.value }}</P23883>
+{% endif %}
+{% if provision.settings.lines.28.key.label %}
+<P23884>{{ provision.settings.lines.28.type }}</P23884>
+<P23885>{{ provision.settings.lines.28.key.line }}</P23885>
+<P23886>{{ provision.settings.lines.28.key.label }}</P23886>
+<P23887>{{ provision.settings.lines.28.key.value }}</P23887>
+{% endif %}
+{% if provision.settings.lines.29.key.label %}
+<P23888>{{ provision.settings.lines.29.type }}</P23888>
+<P23889>{{ provision.settings.lines.29.key.line }}</P23889>
+<P23890>{{ provision.settings.lines.29.key.label }}</P23890>
+<P23891>{{ provision.settings.lines.29.key.value }}</P23891>
+{% endif %}
+{% if provision.settings.lines.30.key.label %}
+<P23892>{{ provision.settings.lines.30.type }}</P23892>
+<P23893>{{ provision.settings.lines.30.key.line }}</P23893>
+<P23894>{{ provision.settings.lines.30.key.label }}</P23894>
+<P23895>{{ provision.settings.lines.30.key.value }}</P23895>
+{% endif %}
+{% if provision.settings.lines.31.key.label %}
+<P23896>{{ provision.settings.lines.31.type }}</P23896>
+<P23897>{{ provision.settings.lines.31.key.line }}</P23897>
+<P23898>{{ provision.settings.lines.31.key.label }}</P23898>
+<P23899>{{ provision.settings.lines.31.key.value }}</P23899>
+{% endif %}
+{% if provision.settings.lines.32.key.label %}
+<P23900>{{ provision.settings.lines.32.type }}</P23900>
+<P23901>{{ provision.settings.lines.32.key.line }}</P23901>
+<P23902>{{ provision.settings.lines.32.key.label }}</P23902>
+<P23903>{{ provision.settings.lines.32.key.value }}</P23903>
+{% endif %}
+{% if provision.settings.lines.33.key.label %}
+<P23904>{{ provision.settings.lines.33.type }}</P23904>
+<P23905>{{ provision.settings.lines.33.key.line }}</P23905>
+<P23906>{{ provision.settings.lines.33.key.label }}</P23906>
+<P23907>{{ provision.settings.lines.33.key.value }}</P23907>
+{% endif %}
+{% if provision.settings.lines.34.key.label %}
+<P23908>{{ provision.settings.lines.34.type }}</P23908>
+<P23909>{{ provision.settings.lines.34.key.line }}</P23909>
+<P23910>{{ provision.settings.lines.34.key.label }}</P23910>
+<P23911>{{ provision.settings.lines.34.key.value }}</P23911>
+{% endif %}
+{% if provision.settings.lines.35.key.label %}
+<P23912>{{ provision.settings.lines.35.type }}</P23912>
+<P23913>{{ provision.settings.lines.35.key.line }}</P23913>
+<P23914>{{ provision.settings.lines.35.key.label }}</P23914>
+<P23915>{{ provision.settings.lines.35.key.value }}</P23915>
+{% endif %}
+{% if provision.settings.lines.36.key.label %}
+<P23916>{{ provision.settings.lines.36.type }}</P23916>
+<P23917>{{ provision.settings.lines.36.key.line }}</P23917>
+<P23918>{{ provision.settings.lines.36.key.label }}</P23918>
+<P23919>{{ provision.settings.lines.36.key.value }}</P23919>
+{% endif %}
+{% if provision.settings.lines.37.key.label %}
+<P23920>{{ provision.settings.lines.37.type }}</P23920>
+<P23921>{{ provision.settings.lines.37.key.line }}</P23921>
+<P23922>{{ provision.settings.lines.37.key.label }}</P23922>
+<P23923>{{ provision.settings.lines.37.key.value }}</P23923>
+{% endif %}
+{% if provision.settings.lines.38.key.label %}
+<P23924>{{ provision.settings.lines.38.type }}</P23924>
+<P23925>{{ provision.settings.lines.38.key.line }}</P23925>
+<P23926>{{ provision.settings.lines.38.key.label }}</P23926>
+<P23927>{{ provision.settings.lines.38.key.value }}</P23927>
+{% endif %}
+{% if provision.settings.lines.39.key.label %}
+<P23928>{{ provision.settings.lines.39.type }}</P23928>
+<P23929>{{ provision.settings.lines.39.key.line }}</P23929>
+<P23930>{{ provision.settings.lines.39.key.label }}</P23930>
+<P23931>{{ provision.settings.lines.39.key.value }}</P23931>
+{% endif %}
+{% if provision.settings.lines.40.key.label %}
+<P23932>{{ provision.settings.lines.40.type }}</P23932>
+<P23933>{{ provision.settings.lines.40.key.line }}</P23933>
+<P23934>{{ provision.settings.lines.40.key.label }}</P23934>
+<P23935>{{ provision.settings.lines.40.key.value }}</P23935>
+{% endif %}
+{% if provision.settings.lines.41.key.label %}
+<P23936>{{ provision.settings.lines.41.type }}</P23936>
+<P23937>{{ provision.settings.lines.41.key.line }}</P23937>
+<P23938>{{ provision.settings.lines.41.key.label }}</P23938>
+<P23939>{{ provision.settings.lines.41.key.value }}</P23939>
+{% endif %}
+{% if provision.settings.lines.42.key.label %}
+<P23940>{{ provision.settings.lines.42.type }}</P23940>
+<P23941>{{ provision.settings.lines.42.key.line }}</P23941>
+<P23942>{{ provision.settings.lines.42.key.label }}</P23942>
+<P23943>{{ provision.settings.lines.42.key.value }}</P23943>
+{% endif %}
+{% if provision.settings.lines.43.key.label %}
+<P23944>{{ provision.settings.lines.43.type }}</P23944>
+<P23945>{{ provision.settings.lines.43.key.line }}</P23945>
+<P23946>{{ provision.settings.lines.43.key.label }}</P23946>
+<P23947>{{ provision.settings.lines.43.key.value }}</P23947>
+{% endif %}
+{% if provision.settings.lines.44.key.label %}
+<P23948>{{ provision.settings.lines.44.type }}</P23948>
+<P23949>{{ provision.settings.lines.44.key.line }}</P23949>
+<P23950>{{ provision.settings.lines.44.key.label }}</P23950>
+<P23951>{{ provision.settings.lines.44.key.value }}</P23951>
+{% endif %}
+{% if provision.settings.lines.45.key.label %}
+<P23952>{{ provision.settings.lines.45.type }}</P23952>
+<P23953>{{ provision.settings.lines.45.key.line }}</P23953>
+<P23954>{{ provision.settings.lines.45.key.label }}</P23954>
+<P23955>{{ provision.settings.lines.45.key.value }}</P23955>
+{% endif %}
+{% if provision.settings.lines.46.key.label %}
+<P23956>{{ provision.settings.lines.46.type }}</P23956>
+<P23957>{{ provision.settings.lines.46.key.line }}</P23957>
+<P23958>{{ provision.settings.lines.46.key.label }}</P23958>
+<P23959>{{ provision.settings.lines.46.key.value }}</P23959>
+{% endif %}
+{% if provision.settings.lines.47.key.label %}
+<P23960>{{ provision.settings.lines.47.type }}</P23960>
+<P23961>{{ provision.settings.lines.47.key.line }}</P23961>
+<P23962>{{ provision.settings.lines.47.key.label }}</P23962>
+<P23963>{{ provision.settings.lines.47.key.value }}</P23963>
+{% endif %}
+{% if provision.settings.lines.48.key.label %}
+<P23964>{{ provision.settings.lines.48.type }}</P23964>
+<P23965>{{ provision.settings.lines.48.key.line }}</P23965>
+<P23966>{{ provision.settings.lines.48.key.label }}</P23966>
+<P23967>{{ provision.settings.lines.48.key.value }}</P23967>
+{% endif %}
+{% if provision.settings.lines.mpk1.key.label %}
+<P323>{{ provision.settings.lines.mpk1.type }}</P323>
+<P301>{{ provision.settings.lines.mpk1.key.line }}</P301>
+<P302>{{ provision.settings.lines.mpk1.key.label }}</P302>
+<P303>{{ provision.settings.lines.mpk1.key.value }}</P303>
+{% endif %}
+{% if provision.settings.lines.mpk2.key.label %}
+<P324>{{ provision.settings.lines.mpk2.type }}</P324>
+<P304>{{ provision.settings.lines.mpk2.key.line }}</P304>
+<P305>{{ provision.settings.lines.mpk2.key.label }}</P305>
+<P306>{{ provision.settings.lines.mpk2.key.value }}</P306>
+{% endif %}
+{% if provision.settings.lines.mpk3.key.label %}
+<P325>{{ provision.settings.lines.mpk3.type }}</P325>
+<P307>{{ provision.settings.lines.mpk3.key.line }}</P307>
+<P308>{{ provision.settings.lines.mpk3.key.label }}</P308>
+<P309>{{ provision.settings.lines.mpk3.key.value }}</P309>
+{% endif %}
+{% if provision.settings.lines.mpk4.key.label %}
+<P326>{{ provision.settings.lines.mpk4.type }}</P326>
+<P310>{{ provision.settings.lines.mpk4.key.line }}</P310>
+<P311>{{ provision.settings.lines.mpk4.key.label }}</P311>
+<P312>{{ provision.settings.lines.mpk4.key.value }}</P312>
+{% endif %}
+{% if provision.settings.lines.mpk5.key.label %}
+<P327>{{ provision.settings.lines.mpk5.type }}</P327>
+<P313>{{ provision.settings.lines.mpk5.key.line }}</P313>
+<P314>{{ provision.settings.lines.mpk5.key.label }}</P314>
+<P315>{{ provision.settings.lines.mpk5.key.value }}</P315>
+{% endif %}
+{% if provision.settings.lines.mpk6.key.label %}
+<P328>{{ provision.settings.lines.mpk6.type }}</P328>
+<P316>{{ provision.settings.lines.mpk6.key.line }}</P316>
+<P317>{{ provision.settings.lines.mpk6.key.label }}</P317>
+<P318>{{ provision.settings.lines.mpk6.key.value }}</P318>
+{% endif %}
+{% if provision.settings.lines.mpk7.key.label %}
+<P329>{{ provision.settings.lines.mpk7.type }}</P329>
+<P319>{{ provision.settings.lines.mpk7.key.line }}</P319>
+<P320>{{ provision.settings.lines.mpk7.key.label }}</P320>
+<P321>{{ provision.settings.lines.mpk7.key.value }}</P321>
+{% endif %}
+{% if provision.settings.lines.mpk8.key.label %}
+<P353>{{ provision.settings.lines.mpk8.type }}</P353>
+<P354>{{ provision.settings.lines.mpk8.key.line }}</P354>
+<P355>{{ provision.settings.lines.mpk8.key.label }}</P355>
+<P356>{{ provision.settings.lines.mpk8.key.value }}</P356>
+{% endif %}
+</config>
+</gs_provision>

@@ -31,6 +31,16 @@
                     "port": "{{ outbound_proxy.backup.port }}"
                 }
             },
+            "wallpapersource": "{{ wallpapersource }}",
+            "wallpaperserverpath": "{{ wallpaperserverpath }}",
+            "hideblfremotestatus": "{{ hideblfremotestatus }}",
+            "acceptincomsipfromproxyonly1": "{{ acceptincomsipfromproxyonly1 }}",
+            "acceptincomsipfromproxyonly2": "{{ acceptincomsipfromproxyonly2 }}",
+            "acceptincomsipfromproxyonly3": "{{ acceptincomsipfromproxyonly3 }}",
+            "acceptincomsipfromproxyonly4": "{{ acceptincomsipfromproxyonly4 }}",
+            "acceptincomsipfromproxyonly5": "{{ acceptincomsipfromproxyonly5 }}",
+            "acceptincomsipfromproxyonly6": "{{ acceptincomsipfromproxyonly6 }}",
+            "userandomport": "{{ userandomport }}",
             "siptrustctrl73": "{{ siptrustctrl73 }}",
             "siptrustctrl80": "{{ siptrustctrl80 }}"
         }
